@@ -1,11 +1,5 @@
 #!/bin/bash -e
 
-# Check if running in privileged mode
-if [ ! -w "/sys" ] ; then
-    echo "[Error] Not running in privileged mode."
-    exit 1
-fi
-
 # Default values
 true ${INTERFACE:=wlan0}
 true ${OUTGOINGS:=tun0}
