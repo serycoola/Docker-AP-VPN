@@ -1,4 +1,6 @@
-# Docker container stack: hostap + dhcp server 
+# Docker container stack: hostapd + dhcp server + VPN 
+
+## OPENVPN - new addition!
 
 This container starts wireless access point (hostap) and dhcp server in docker
 container. It supports both host networking and network interface reattaching
@@ -23,7 +25,7 @@ file in order to look for that file and load the credentials automatically.
 More info can be found here: https://forums.openvpn.net/viewtopic.php?t=11342
 
 
-## Requirements
+## HOTSPOT
 
 On the host system install required wifi drivers, then make sure your wifi adapter
 supports AP mode:
