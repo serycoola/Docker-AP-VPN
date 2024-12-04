@@ -4,6 +4,25 @@ This container starts wireless access point (hostap) and dhcp server in docker
 container. It supports both host networking and network interface reattaching
 to container network namespace modes (host and guest).
 
+
+THIS IS A MODIFIED VERSION OF docker-ap. It sets up OpenVPN and passes the VPN
+connection through the hotspot. For the hotspot, the environment variables stay
+the same, except that OUTGOINGS is set by default to "tun0".
+
+For OpenVPN, it looks by default for configurations in /ovpn and loads any file
+that ends in .ovpn.
+
+##Environment variables for VPN:
+* **VPN_PATH**: Path where you added the config files. Default is /ovpn
+* **CONGIG**: Partial or full name of the config you want to load, just
+              enough info to filter out a single file in the folder.
+
+## NOTE: this container is not set up to accept username and password as an input.
+You must create a file containing the username and password and modify your .ovpn
+file in order to look for that file and load the credentials automatically.
+More info can be found here: https://forums.openvpn.net/viewtopic.php?t=11342
+
+
 ## Requirements
 
 On the host system install required wifi drivers, then make sure your wifi adapter
