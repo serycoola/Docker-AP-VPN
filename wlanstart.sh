@@ -8,6 +8,7 @@ fi
 
 # Default values
 true ${INTERFACE:=wlan0}
+true ${OUTGOINGS:=tun0}
 true ${SUBNET:=192.168.254.0}
 true ${AP_ADDR:=192.168.254.1}
 true ${SSID:=docker-ap}
