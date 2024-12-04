@@ -6,7 +6,7 @@ true ${VPN_PATH:="/ovpn"}
 vpn_path=${VPN_PATH}
 
 # Change directory to working path (in order to avoid OpenVPN looking for credentials in /)
-cd "$path"
+cd "$vpn_path"
 
 # Default config to load
 true ${CONFIG:=".ovpn"}
