@@ -8,4 +8,5 @@ RUN echo "" > /var/lib/dhcp/dhcpd.leases
 ADD wlanstart.sh /bin/wlanstart.sh
 ADD vpnconnect.sh /bin/vpnconnect.sh
 
-ENTRYPOINT [ "/bin/wlanstart.sh" ] && [ "/bin/vpnconnect.sh" ]
+ENTRYPOINT [ "/bin/vpnconnect.sh" ]
+ENTRYPOINT [ "/bin/wlanstart.sh" ]
