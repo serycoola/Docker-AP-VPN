@@ -14,7 +14,7 @@ that ends in .ovpn.
 
 ##Environment variables for VPN:
 * **VPN_PATH**: Path where you added the config files. Default is /ovpn
-* **CONGIG**: Partial or full name of the config you want to load, just
+* **CONFIG**: Partial or full name of the config you want to load, just
               enough info to filter out a single file in the folder.
 
 ## NOTE: this container is not set up to accept username and password as an input.
