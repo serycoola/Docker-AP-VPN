@@ -14,6 +14,6 @@ true ${CONFIG:=".ovpn"}
 config=${CONFIG} 
 
 # Connect to VPN
-openvpn --config *"$config"*
+openvpn --auth-nocache --config *"$config"*
 
 
