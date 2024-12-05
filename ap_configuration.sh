@@ -15,6 +15,16 @@ true ${DRIVER:=nl80211}
 true ${HT_CAPAB:=[HT40-][SHORT-GI-20][SHORT-GI-40]}
 true ${MODE:=host}
 
+# Default VPN values
+true ${VPN_PATH:="/ovpn"}
+true ${CONFIG:=".ovpn"}
+
+# Set path for OpenVPN configs.
+vpn_path=${VPN_PATH}
+# Partial or full name of the config you want to load, just enough info to be able to identify a single file in the folder.
+vpn_config=${VPN_CONFIG} 
+
+
 # Attach interface to container in guest mode
 if [ "$MODE" == "guest"  ]; then
     echo "Attaching interface to container"
@@ -121,32 +131,8 @@ dhcpd ${INTERFACE}
 echo "Starting HostAP daemon ..."
 /usr/sbin/hostapd /etc/hostapd.conf 
 
-### END HOTSPOT CONFIGURATION ###
-
-### BEGIN VPN CONFIGURATION ###
-
-echo "Begin VPN Configuration ..."
-
-# Default path for OpenVPN configs
-true ${VPN_PATH:="/ovpn"}
-# Set path for OpenVPN configs.
-vpn_path=${VPN_PATH}
-
-# Change directory to working path (in order to avoid OpenVPN looking for credentials in /)
-echo "Change directory to working path ..."
-cd "$vpn_path"
-
-echo "Parse OpenVPN configuration ..."
-# Default config to load
-true ${CONFIG:=".ovpn"}
-# Partial or full name of the config you want to load, just enough info to be able to identify a single file in the folder when using *
-vpn_config=${VPN_CONFIG} 
-
 echo "Connecting to VPN ..."
-# Connect to VPN
-openvpn --auth-nocache --config *"$vpn_config"*
+# Change directory to working path (in order to avoid OpenVPN looking for credentials in root) & Connect to VPN
+cd "$vpn_path" && openvpn --auth-nocache --config *"$vpn_config"*
 
-### END VPN CONFIGURATION ###
-
-
-
+### END HOTSPOT CONFIGURATION ###
