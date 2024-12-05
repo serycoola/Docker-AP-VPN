@@ -104,7 +104,7 @@ else
    iptables -D FORWARD -i ${INTERFACE} -j ACCEPT > /dev/null 2>&1 || true
    iptables -A FORWARD -i ${INTERFACE} -j ACCEPT
 fi
-echo "Configuring DHCP server .."
+echo "Configuring DHCP server ..."
 
 cat > "/etc/dhcp/dhcpd.conf" <<EOF
 option domain-name-servers 8.8.8.8, 8.8.4.4;
@@ -127,19 +127,24 @@ echo "Starting HostAP daemon ..."
 
 ### BEGIN VPN CONFIGURATION ###
 
+echo "Begin VPN Configuration ..."
+
 # Default path for OpenVPN configs
 true ${VPN_PATH:="/ovpn"}
 # Set path for OpenVPN configs.
 vpn_path=${VPN_PATH}
 
 # Change directory to working path (in order to avoid OpenVPN looking for credentials in /)
+echo "Change directory to working path ..."
 cd "$vpn_path"
 
+echo "Parse OpenVPN configuration ..."
 # Default config to load
 true ${CONFIG:=".ovpn"}
 # Partial or full name of the config you want to load, just enough info to be able to identify a single file in the folder when using *
 config=${CONFIG} 
 
+echo "Connecting to VPN ..."
 # Connect to VPN
 openvpn --auth-nocache --config *"$config"*
 
