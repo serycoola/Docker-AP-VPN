@@ -15,16 +15,6 @@ true ${DRIVER:=nl80211}
 true ${HT_CAPAB:=[HT40-][SHORT-GI-20][SHORT-GI-40]}
 true ${MODE:=host}
 
-# Default VPN values
-true ${VPN_PATH:="/ovpn"}
-true ${CONFIG:=".ovpn"}
-
-# Set path for OpenVPN configs.
-vpn_path=${VPN_PATH}
-# Partial or full name of the config you want to load, just enough info to be able to identify a single file in the folder.
-vpn_config=${VPN_CONFIG} 
-
-
 # Attach interface to container in guest mode
 if [ "$MODE" == "guest"  ]; then
     echo "Attaching interface to container"
@@ -114,7 +104,7 @@ else
    iptables -D FORWARD -i ${INTERFACE} -j ACCEPT > /dev/null 2>&1 || true
    iptables -A FORWARD -i ${INTERFACE} -j ACCEPT
 fi
-echo "Configuring DHCP server ..."
+echo "Configuring DHCP server .."
 
 cat > "/etc/dhcp/dhcpd.conf" <<EOF
 option domain-name-servers 8.8.8.8, 8.8.4.4;
@@ -130,9 +120,5 @@ dhcpd ${INTERFACE}
 
 echo "Starting HostAP daemon ..."
 /usr/sbin/hostapd /etc/hostapd.conf 
-
-echo "Connecting to VPN ..."
-# Change directory to working path (in order to avoid OpenVPN looking for credentials in root) & Connect to VPN
-cd "$vpn_path" && openvpn --auth-nocache --config *"$vpn_config"*
 
 ### END HOTSPOT CONFIGURATION ###
