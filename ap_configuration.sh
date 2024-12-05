@@ -140,11 +140,11 @@ echo "Parse OpenVPN configuration ..."
 # Default config to load
 true ${CONFIG:=".ovpn"}
 # Partial or full name of the config you want to load, just enough info to be able to identify a single file in the folder when using *
-config=${CONFIG} 
+vpn_config=${VPN_CONFIG} 
 
 echo "Connecting to VPN ..."
 # Connect to VPN
-openvpn --auth-nocache --config *"$config"*
+openvpn --auth-nocache --config *"$vpn_config"*
 
 ### END VPN CONFIGURATION ###
 
