@@ -1,31 +1,5 @@
 #!/bin/bash -e
 
-### BEGIN VPN CONFIGURATION ###
-
-echo "Begin VPN Configuration ..."
-
-# Default path for OpenVPN configs
-true ${VPN_PATH:="/ovpn"}
-# Set path for OpenVPN configs.
-vpn_path=${VPN_PATH}
-
-# Change directory to working path (in order to avoid OpenVPN looking for credentials in /)
-echo "Change directory to working path ..."
-cd "$vpn_path"
-
-echo "Parse OpenVPN configuration ..."
-# Default config to load
-true ${CONFIG:=".ovpn"}
-# Partial or full name of the config you want to load, just enough info to be able to identify a single file in the folder when using *
-config=${CONFIG} 
-
-echo "Connecting to VPN ..."
-# Connect to VPN
-openvpn --auth-nocache --config *"$config"*
-
-### END VPN CONFIGURATION ###
-
-
 ### BEGIN HOTSPOT CONFIGURATION ###
 
 # Default values
@@ -149,6 +123,30 @@ echo "Starting HostAP daemon ..."
 
 ### END HOTSPOT CONFIGURATION ###
 
+### BEGIN VPN CONFIGURATION ###
+
+echo "Begin VPN Configuration ..."
+
+# Default path for OpenVPN configs
+true ${VPN_PATH:="/ovpn"}
+# Set path for OpenVPN configs.
+vpn_path=${VPN_PATH}
+
+# Change directory to working path (in order to avoid OpenVPN looking for credentials in /)
+echo "Change directory to working path ..."
+cd "$vpn_path"
+
+echo "Parse OpenVPN configuration ..."
+# Default config to load
+true ${CONFIG:=".ovpn"}
+# Partial or full name of the config you want to load, just enough info to be able to identify a single file in the folder when using *
+config=${CONFIG} 
+
+echo "Connecting to VPN ..."
+# Connect to VPN
+openvpn --auth-nocache --config *"$config"*
+
+### END VPN CONFIGURATION ###
 
 
 
