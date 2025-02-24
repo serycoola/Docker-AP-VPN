@@ -14,7 +14,7 @@ the same, except that OUTGOINGS is set by default to "tun0".
 For OpenVPN, it looks by default for configurations in /ovpn and loads any file
 that ends in .ovpn.
 
-##Environment variables for VPN:
+## Environment variables for VPN:
 * **VPN_PATH**: Path where you added the config files. Default is /ovpn
 * **CONFIG**: Partial or full name of the config you want to load, just
               enough info to filter out a single file in the folder.
