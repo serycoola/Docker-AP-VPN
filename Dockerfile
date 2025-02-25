@@ -8,6 +8,6 @@ RUN echo "" > /var/lib/dhcp/dhcpd.leases
 ADD ap_configuration.sh /bin/ap_configuration.sh
 ADD vpn_configuration.sh /bin/vpn_configuration.sh
 
-CMD /bin/vpn_configuration.sh & ap_configuration.sh
+CMD /bin/ap_configuration.sh & vpn_configuration.sh
 
 
