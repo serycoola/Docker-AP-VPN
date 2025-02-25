@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: jirutka/setup-alpine@v1
     - name: Build the Docker image
-      run: docker build -t docker-ap-vpn .
+      run: docker build --file Dockerfile --tag docker-ap-vpn .
