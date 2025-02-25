@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: docker/build-push-action@v2
     - name: Build the Docker image
-      run: docker build -t docker-ap-vpn
+      run: docker build -t docker-ap-vpn .
